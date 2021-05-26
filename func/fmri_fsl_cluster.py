@@ -21,7 +21,7 @@ import nipype.interfaces.utility as util  # utility
 import nipype.pipeline.engine as pe  # pypeline engine
 import nipype.algorithms.modelgen as model  # model generation
 #import nipype.algorithms.rapidart as ra  # artifact detection
-from nipype.workflows.fmri.fsl.preprocess import create_susan_smooth
+#from nipype.workflows.fmri.fsl.preprocess import create_susan_smooth
 from nipype.interfaces.utility import Function
 """
 The output file format for FSL routines is being set to compressed NIFTI.
@@ -35,7 +35,7 @@ data_dir = '/gpfs/gibbs/pi/levy_ifat/Or/kpe'
 removeTR = 4
 fwhm = 6
 tr = 1
-session = '3' # choose session
+session = '4' # choose session
 output_dir = '/gpfs/gibbs/pi/levy_ifat/Or/kpe/results/ScriptPart_ses%s' %session
 # %% Methods
 def _bids2nipypeinfo(in_file, events_file, regressors_file, removeTR = 4,
@@ -89,9 +89,9 @@ def _bids2nipypeinfo(in_file, events_file, regressors_file, removeTR = 4,
     return [runinfo], str(out_motion)
 # %%
 subject_list = ['008','1223','1253','1263','1293','1307','1315','1322','1339',
-'1343','1351','1356','1364', '1369','1387','1390','1403','1419','1464',
-'1468','1480','1499', '1561', '1573', '1578']
-# Map field names to individual subject runs. 
+ '1343','1351','1356','1364', '1369','1387','1390','1403','1419','1464',
+ '1468','1480','1499', '1561', '1573', '1578', '1587', '1612']
+# # Map field names to individual subject runs. 
 
 
 
@@ -196,4 +196,4 @@ modelfit.connect([
     
 ])
 # %%
-modelfit.run('MultiProc', plugin_args={'n_procs': 9})
+modelfit.run('MultiProc', plugin_args={'n_procs': 2})
